@@ -22,7 +22,7 @@ Um einen numerischen Wert zu deklarieren, schreiben wir den numerischen Wert ein
 ```qml
 width: 200
 ```
-Einen Text schreiben wir in Anführungszeichen **"** or **'**.  
+Einen Text schreiben wir in Anführungszeichen **"** oder **'**.  
 ```qml
 text: "The quick brown fox"
 message: 'Hello "Brother"'
@@ -31,16 +31,16 @@ Farben werden genau so zwischen Anführungszeichen gesetzt und mit dem Hash "#" 
 ```qml
 color: "#FF00FF"
 ```
-Hier im Beispiel wurde der Rot-Anteil auf hexadezimal FF (255) gesetzt, der Grün-Anteil ist auf 0 und der Blau-Anteil auch auf FF (255). Man spricht hier auch von RGB. (Rot Grün Blau)
+Hier im Beispiel wurde der Rot-Anteil auf hexadezimal FF (255) gesetzt, der Grün-Anteil ist auf 0 und der Blau-Anteil auch auf FE (254). Man spricht hier auch von RGB. (Rot Grün Blau)
 
 Du kannst die Opacity auch mit einem hexadezimalen Wert setzen. Einfach an das Ende des Farbstrings anhängen.  
 ```qml
-color: "#FF00FFEE"
+color: "#FF00FEEE"
 ```
 Hier im Beispiel wurde die Opacity auf den Wert EE (238) gesetzt.
 0 bedeutet transparent und FF (255) voll sichtbar. 
 
-### The Id
+### Die Id
 Ein spezieller Wert in QML ist die **id**.   
 ```qml
 ApplicationWindow 
@@ -105,7 +105,6 @@ Die Hauptversion deutet auf die QtQuick-Version hin.
 Die Unterversion deutet auf die Qt-Version hin.  
 Somit wird im obigen Beispiel QtQuick 2 und Qt mit der Version 5.* importiert.  
 Die Version 2.12 importiert in diesem Fall QtQuick 2 und Qt 5.12.  
-Ja, die Versionierung ist etwas verwirrend. Das liegt aber daran, das QML auch abwärtskompatibel sein soll, nehme ich an.
 
 ## Eigenschaften
 Du kannst Eigenschaften mit dem Schlüsselwort **property**, gefolgt von dem Typ, dem Namen und optional mit einem Initialwert deklarieren.  
@@ -123,15 +122,15 @@ Eine alias Eigenschaft benötigt keinen Typ, da der Typ des referenzierten Objek
 ## Basic Types
 | Typ | Beschreibung |
 |  :---     |   :---:     |
-| bool | Binary true/false value |
-| double | Number with a decimal point, stored in double precision |
-| enumeration | Named enumeration value |
-| int | Whole number, e.g. 0, 11, or -22 |
-| list | List of QML objects |
-| real | Number with a decimal point |
-| string | Free form text string |
-| url | Resource locator |
-| var | Generic property type |  
+| bool | Binär Wahr/Falsch-Wert |
+| double | Nummer mit Dezimalpunkt, gespeichert mit doppelter Genauigkeit |
+| enumeration | Benannte Aufzahlung |
+| int | Ganzzahl, e.g. 0, 11, or -22 |
+| list | Liste von QML Objekten |
+| real | Nummer mit Dezimalpunkt |
+| string | Zeichenkette |
+| url | Uniform Resource Locator |
+| var | Generischer Typ |  
 
 ## Property Binding
 Eines der wichtigsten Merkmale von QML ist die Eigenschaftsbindung. Ein Wert einer Eigenschaft kann über eine Konstante, einen Ausdruck oder über die Bindung an eine andere Eigenschaft festgelegt werden.
@@ -149,7 +148,7 @@ Rectangle
     }
 }
 ```
-Im obigen Fall wurde die Höhe an die Höhe des übergeordneten Objekts gebunden. Wenn wir die Höhe des Elternteils ändern, wird die Höhe des inneren Rectangle automatisch angepasst.  
+Im obigen Fall wurde die Höhe an die Höhe des übergeordneten Objekts gebunden. Wenn wir die Höhe des Elternteils ändern, wird die Höhe des inneren Rechtecks automatisch angepasst.  
 
 ## Signals
 ### Empfangen von Signalen und Signalhandlern
@@ -168,7 +167,7 @@ Um eine Benachrichtigung zu erhalten, wenn ein Signal für ein Objekt ausgegeben
         }
     }
 ```
-Im obigen Fall hat der Button ein Signal mit dem Namen **clickt ** und wir erstellen einen Signalhandler mit dem entsprechenden Namen **onClicked **.
+Im obigen Fall hat der Button ein Signal mit dem Namen **clicked** und wir erstellen einen Signalhandler mit dem entsprechenden Namen **onClicked**.
 
 ### Signalhandler für Eigenschaftsänderungen
 Ein Signal wird ausgegeben, wenn sich der Wert einer QML-Eigenschaft ändert. Diese Art von Signal ist ein Eigenschaftsänderungssignal, und Signalhandler für diese Signale werden in der Form ```on<PropertyName>Changed
@@ -293,7 +292,7 @@ MouseArea
 ```
 Die MouseArea hat ein clicked-Ereignis, das wir mit dem Präfix "on" codieren.
 Wenn Sie mehr als eine Codezeile haben, müssen Sie Klammern verwenden.
-In diesem Fall rufen wir das Funktionsinkrement auf.
+In diesem Fall rufen wir die Funktion increment() auf.
 Die Eigenschaft clickCount deklarieren wir auf oberster Ebene. Es ist eine gute Angewohnheit, alle Variablen oben im Stammelement zu deklarieren.  
 
 ##Interaktion zwischen QML und Python
@@ -373,9 +372,9 @@ ApplicationWindow {
     }
 }
 ```
-```bridge.cwd
+```bridge.cwd()
 ``` verwendet die in Python deklarierte Eigenschaft, um das aktuelle Arbeitsverzeichnis abzurufen.   
-Und mit ```bridge.message
+Und mit ```bridge.message()
 ``` senden wir Daten an den Slot in Python.  
 Auf der Python-Seite können wir eine Javascript-Funktion mit dem Root-Objekt aufrufen.  
 ```python
@@ -391,7 +390,7 @@ Auf einem Mobiltelefon haben wir hunderte verschiedener Bildschirmauflösungen u
 Außerdem erstellen wir keine Dialoge mehr.
 Normalerweise erstellen wir Vollbildseiten.
 
-Wenn du auf einem Desktop-Computer entwickelst, musst du den Formfaktor eines Mobiltelefons simulieren.
+Wenn du auf einem Desktop-Computer entwickelst, und dort auch testen möchtest, musst du den Formfaktor eines Mobiltelefons simulieren.
 Aufgrund der Tatsache, dass mein Mobiltelefon eine Auflösung von 700 * 1200 und mein Desktop eine Auflösung von 1366 * 768 hat, muss ich eine Bildschirmgröße finden, um den Porträtmodus meines Telefons auf meinem Desktop zu simulieren. Daher stelle ich das ApplicationWindow auf die Größe 350 * 600 ein, damit das Fenster auf meinen Bildschirm passt und den Porträtmodus eines Mobiltelefons nachahmt.
 
 ```qml
@@ -438,7 +437,7 @@ Wenn du ein Objekt unten rechts verankern möchtest, positionierst du es wie fol
         anchors.rightMargin: 20
     }
 ```
-Die Margin ist der Abstand zwischen dem Element und der Seite der Eltern.
+Die Margin ist der Abstand zwischen dem Element und der Seite des Eltern-Elementes.
 
 Im Quellcode dieses Buches findest du ein Beispiel mit allen Ankern unter *QtQuick/Anchors*.
 
@@ -450,69 +449,69 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.1
 
-ApplicationWindow {
+ApplicationWindow 
+{
     width: 640
     height: 480
     visible: true
     title: "QML Listview Demo"
 
     ListView 
-	{
-	 	clip: true
-		anchors.fill: parent
-		anchors.margins: 5
-	 	spacing: 5
+    {
+        clip: true
+        anchors.fill: parent
+        anchors.margins: 5
+        spacing: 5
 	    	
-		delegate: listDelegate
-	    	
-	    Component 
-		{
-	 	   	id: listDelegate
+        delegate: listDelegate
+        Component 
+        {
+            id: listDelegate
 	    		
-	    	RowLayout 
-			{
-				anchors.left: parent.left
-				anchors.right: parent.right
-        		anchors.margins: 10
-        		spacing: 10
+            RowLayout 
+            {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.margins: 10
+                spacing: 10
 
-        		CheckBox {}
-        		Label { text: itemType; color: "#888"; font.italic: true }
-        		Label { text: itemName; Layout.fillWidth: true }
-        		Label { text: itemPath }
-        		ComboBox { model: itemVersions; Layout.preferredWidth: 90 }
-    		}
-		} 
+                CheckBox {}
+                Label { text: itemType; color: "#888"; font.italic: true }
+                Label { text: itemName; Layout.fillWidth: true }
+                Label { text: itemPath }
+                ComboBox { model: itemVersions; Layout.preferredWidth: 90 }
+            }
+        } 
 	    	
-	    model: ListModel 
-		{
-    	    ListElement 
-			{
-				itemType: "asset"
+        model: ListModel 
+        {
+            ListElement 
+            {
+                itemType: "asset"
                 itemName: "First entry"
                 itemPath: "/documents/fe.md"
-				itemVersions: []
-         	}
-     	    ListElement 
-			{
-				itemType: "asset"
+                itemVersions: []
+            }
+            ListElement 
+            {
+                itemType: "asset"
                 itemName: "Second entry"
                 itemPath: "/documents/se.md"
-				itemVersions: []
-         	}
-			ListElement 
-			{
-				itemType: "asset"
+                itemVersions: []
+            }
+            ListElement 
+            {
+                itemType: "asset"
                 itemName: "Third entry"
                 itemPath: "/documents/te.md"
-				itemVersions: []
-         	}
+                itemVersions: []
+            }
         }
     }
 }
 ```
 Um die Liste zu rendern, entwerfen wir eine Komponente, die als Delegat verwendet wird.
-Das Modell, das die Daten liefert, die wir hier in diesem Beispiel deklarativ verwenden, um das Verständnis zu erleichtern.
+Das Modell, das die Daten liefert, verwenden wir hier deklarativ.
 
 Als nächstes werden wir ein in Python erstelltes Modell verwenden.  
 ```python
@@ -590,7 +589,7 @@ In der Ansicht müssen wir nur das Modell ändern.
 ```qml
 model: mymodel
 ```
-Das Modellobjekt wurde jetzt als Kontexteigenschaft festgelegt.
+Das Modellobjekt wurde jetzt als Kontexteigenschaft **mymodel** festgelegt.
 
 Weitere Informationen finden Sie in den Qt-Dokumentationen und Beispielen. 
 [All QML Types](https://doc.qt.io/qt-5/qmltypes.html)
